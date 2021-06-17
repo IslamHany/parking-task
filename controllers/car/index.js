@@ -107,7 +107,7 @@ const passThrough = async (req, res) => {
         });
         await car.save();
         
-        return res.send(car);
+        return res.send({balance: car.balance});
     }
     
     const timeDiff = (Date.now() - passAt) / (1000); //in seconds
@@ -119,7 +119,7 @@ const passThrough = async (req, res) => {
         });
         await car.save();
         
-        return res.send(car);
+        return res.send({balance: car.balance});
     }
     
     car.set({
@@ -128,7 +128,7 @@ const passThrough = async (req, res) => {
     
     await car.save();
     
-    res.send(car);
+    res.send({balance: car.balance});
 };
 
 module.exports = {
