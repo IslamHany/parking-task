@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const carSchema = new mongoose.Schema({
-    barnd: {
+    brand: {
         type: String,
         required: true
     },
@@ -13,15 +13,17 @@ const carSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    enterAt: {
-        type: Date
-    },
-    exitAt: {
+    passAt: {
         type: Date
     },
     userId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
+        ref: 'User',
+        required: true
+    },
+    balance: {
+        type: Number,
+        default: 10
     }
 });
 

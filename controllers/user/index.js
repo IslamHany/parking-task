@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const User = require('../../models/user');
 const BadRequestError = require('../../errors/badRequest');
+const notFoundError = require('../../errors/notFound');
 
 const getAllUsers = async(req, res) => {
     const users = await User.find({});
@@ -31,7 +32,7 @@ const getUserById = async (req, res) => {
     const user = await User.findById(id);
     
     if(!user)
-        throw new BadRequestError("user not found");
+        throw new notFoundError("user not found");
     
     res.send(user);
 };
@@ -45,7 +46,7 @@ const updatedUserById = async (req, res) => {
     
     const user = await User.findById(id);
     if(!user)
-        throw new BadRequestError("user not found");
+        throw new notFoundError("user not found");
     
     user.set({
         name,
@@ -67,7 +68,7 @@ const deleteUserById = async (req, res) => {
     const user = await User.findByIdAndDelete(id);
     
     if(!user)
-        throw new BadRequestError("user not found");
+        throw new notFoundError("user not found");
     
     res.send(user);
 };
